@@ -1,0 +1,14 @@
+CREATE TABLE tasks(
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(200) NOT NULL,
+  description TEXT,
+  board_id INT NOT NULL,
+  assignee_id INT NULL,
+  due_date DATE NULL,
+  order_index INT NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_board FOREIGN KEY(board_id) REFERENCES boards(id) ON DELETE CASCADE,
+  CONSTRAINT fk_user FOREIGN KEY(assignee_id) REFERENCES users(id) ON DELETE CASCADE
+);

@@ -1,0 +1,11 @@
+CREATE TABLE attachments(
+  id SERIAL PRIMARY KEY,
+  task_id INT NOT NULL,
+  uploaded_by INT NOT NULL,
+  file_url VARCHAR(255) NOT NULL,
+  file_name VARCHAR(150) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_task FOREIGN KEY(task_id) REFERENCES tasks(id) ON DELETE CASCADE,
+  CONSTRAINT fk_uploaded_by FOREIGN KEY(uploaded_by) REFERENCES users(id) ON DELETE CASCADE
+);
